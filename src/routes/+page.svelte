@@ -1,10 +1,9 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row m-5">
         <div class="col-md-10">
             <h1>Your Project</h1>
         </div>
         <div class="col-md-2">
-            <!-- tombol logout & login-->
             <a href="/login" class="btn btn-primary">Logout</a>  
             <a href="/profil" class="btn btn-primary">Profil</a>  
         </div>
@@ -46,3 +45,7 @@
 		</div>
 	</div>
 </div>
+
+ -->
+
+ <button class="btn">Hello daisyUI</button>
