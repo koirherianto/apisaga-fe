@@ -30,7 +30,7 @@ export const actions = {
         if (response.status === 200) {
             cookies.set('token', responseData.token.token, { path: '/' });
             cookies.set('user', JSON.stringify(responseData.data), { path: '/' });
-            throw redirect(307, '/u/' + responseData.data.username +'/project');
+            redirect(307, '/u/' + responseData.data.username +'/project');
         }else if (response.status === 401) {
             return fail(401, {
 				description: 'a',
