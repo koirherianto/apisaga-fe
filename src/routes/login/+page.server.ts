@@ -10,12 +10,9 @@ export const actions = {
     login: async ({cookies, request})  => {
         const form = await request.formData();
 
-        const email = form.get('email');
-        const password = form.get('password');
-
-        const data = {
-            email,
-            password,
+        const body = {
+            email : form.get('email'),
+            password : form.get('password'),
         }
 
         const response = await fetch('http://localhost:3333/api/login', {
@@ -23,7 +20,7 @@ export const actions = {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(body),
         });
 
         const responseData = await response.json();
@@ -33,15 +30,31 @@ export const actions = {
         if (response.status === 200) {
             cookies.set('token', responseData.token.token, { path: '/' });
             cookies.set('user', JSON.stringify(responseData.data), { path: '/' });
-            throw redirect(307, '/post');
+            throw redirect(307, '/u/' + responseData.data.username +'/project');
         }else if (response.status === 401) {
-            return fail(422, {
+            return fail(401, {
 				description: 'a',
 				error: {
                     'email' : responseData.message,
                     'password' : responseData.message
+                },
+                old: {
+                    'email' : body.email,
+                    'password' : ''
                 }
 			});
+        } else {
+            return fail(500, {
+                description: 'a',
+                error: {
+                    'email' : responseData.message,
+                    'password' : responseData.message
+                },
+                old : {
+                    'email' : body.email,
+                    'password' : ''
+                }
+            });
         }
     }
 } satisfies Actions;
