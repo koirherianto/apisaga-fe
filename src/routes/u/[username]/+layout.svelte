@@ -1,3 +1,21 @@
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { enhance } from '$app/forms';
+  
+	async function handleLogout(event: SubmitEvent) {
+		console.log('ini handleLogout dijalankan');
+		event.preventDefault();
+		const form = event.target as HTMLFormElement; // Type assertion (optional)
+		
+		await fetch(form.action, {
+			method: form.method,
+			body: new FormData(form),
+		});
+		
+		goto('/login'); // Mengarahkan pengguna ke halaman login setelah logout
+	}
+  </script>
+
 <body class="flex bg-gray-100 dark:bg-gray-900">
 	<aside
 		class="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700"
@@ -176,25 +194,27 @@
 						<span class="text-sm font-medium text-gray-700 dark:text-gray-200">John Doe</span>
 					</a>
 
-					<a
-						href="/"
-						class="text-gray-500 transition-colors duration-200 rotate-180 dark:text-gray-400 rtl:rotate-0 hover:text-blue-500 dark:hover:text-blue-400"
-					>
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							stroke-width="1.5"
-							stroke="currentColor"
-							class="w-5 h-5"
+					<form method="post" action="/logout" on:submit={handleLogout} use:enhance>
+						<button
+							type="submit"
+							class="text-gray-500 transition-colors duration-200 rotate-180 dark:text-gray-400 rtl:rotate-0 hover:text-blue-500 dark:hover:text-blue-400"
 						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
-							/>
-						</svg>
-					</a>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								stroke-width="1.5"
+								stroke="currentColor"
+								class="w-5 h-5"
+							>
+								<path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+								/>
+							</svg>
+						</button>
+					</form>
 				</div>
 			</div>
 		</div>
