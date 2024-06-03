@@ -43,8 +43,8 @@
       </form>
   
       <p class="mt-10 text-center text-sm text-gray-500">
-        Not a member?
-        <a href="/" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Start a 14 day free trial</a>
+        Already a member? 
+        <a href="/login" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">Log in here.</a>
       </p>
     </div>
   </div>
