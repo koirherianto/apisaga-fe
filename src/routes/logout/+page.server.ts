@@ -21,11 +21,7 @@ export const load: PageServerLoad = async ({cookies}) => {
         }
     });
 
-    const responseData = await response.json();
-
-    console.log(responseData);
-    
-
+    await response.json();
     if (response.status === 200) {
         // delete all cookies
         cookies.delete('token', { path: '/' });
@@ -36,6 +32,4 @@ export const load: PageServerLoad = async ({cookies}) => {
     } else {
         redirect(307, '/u/' + user.username +'/project')
     }
-    
-    
 };
