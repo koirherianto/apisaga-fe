@@ -22,7 +22,8 @@ export const actions = {
             username : form.get('username'),
             password : form.get('password'),
         }
-
+        
+        
         const response = await fetch('http://localhost:3333/api/register', {
             method: 'POST',
             headers: {
@@ -30,37 +31,36 @@ export const actions = {
             },
             body: JSON.stringify(body),
         });
-
+        
         const responseData = await response.json();
-
+        console.log(responseData);
+        console.log(response.status);
+        
+        
         if (response.status === 201) {
             cookies.set('token', responseData.token.token, { path: '/' });
             cookies.set('user', JSON.stringify(responseData.data), { path: '/' });
             redirect(307, '/u/' + responseData.data.username +'/project');
-        }else if (response.status === 401) {
-            return fail(401, {
-				description: 'a',
-				error: {
-                    'email' : responseData.message,
-                    'password' : responseData.message
-                },
+        }else if (response.status === 422) {
+            const errors: { [key: string]: string } = {};
+
+            for (const error of responseData.errors) {
+                errors[error.field] = error.message;
+            }
+
+            return fail(422, {
+				error: errors,
                 old: {
+                    'name' : body.name,
                     'email' : body.email,
+                    'username' : body.username,
                     'password' : ''
                 }
 			});
-        } else {
-            return fail(500, {
-                description: 'a',
-                error: {
-                    'email' : responseData.message,
-                    'password' : responseData.message
-                },
-                old : {
-                    'email' : body.email,
-                    'password' : ''
-                }
-            });
+        } else if(response.status === 401) {
+            redirect(307, '/login');
+        }else {
+            // do something
         }
     }
 } satisfies Actions;
