@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { enhance } from '$app/forms';
+
+	export let data;
   
 	async function handleLogout(event: SubmitEvent) {
 		console.log('ini handleLogout dijalankan');
@@ -185,16 +187,16 @@
 				</div>
 
 				<div class="flex items-center justify-between mt-6">
-					<a href="/" class="flex items-center gap-x-2">
+					<a href="/u/{data.user.username}/profile" class="flex items-center gap-x-2">
 						<img
 							class="object-cover rounded-full h-7 w-7"
 							src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&h=634&q=80"
 							alt="avatar"
 						/>
-						<span class="text-sm font-medium text-gray-700 dark:text-gray-200">John Doe</span>
+						<span class="text-sm font-medium text-gray-700 dark:text-gray-200">{data.user.name}</span>
 					</a>
 
-					<form method="post" action="/logout" on:submit={handleLogout} use:enhance>
+					<a href="/logout">
 						<button
 							type="submit"
 							class="text-gray-500 transition-colors duration-200 rotate-180 dark:text-gray-400 rtl:rotate-0 hover:text-blue-500 dark:hover:text-blue-400"
@@ -214,7 +216,7 @@
 								/>
 							</svg>
 						</button>
-					</form>
+					</a>
 				</div>
 			</div>
 		</div>
