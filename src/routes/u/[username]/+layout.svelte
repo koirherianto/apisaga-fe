@@ -3,32 +3,34 @@
 	import { enhance } from '$app/forms';
 
 	export let data;
-  
+
 	async function handleLogout(event: SubmitEvent) {
 		console.log('ini handleLogout dijalankan');
 		event.preventDefault();
 		const form = event.target as HTMLFormElement; // Type assertion (optional)
-		
+
 		await fetch(form.action, {
 			method: form.method,
-			body: new FormData(form),
+			body: new FormData(form)
 		});
-		
+
 		goto('/login'); // Mengarahkan pengguna ke halaman login setelah logout
 	}
-  </script>
+</script>
 
 <body class="flex bg-gray-100 dark:bg-gray-900">
 	<aside
 		class="flex flex-col w-64 h-screen px-5 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700"
 	>
-		<a href="/">
+		<!-- <a href="/">
 			<img class="w-auto h-7" src="https://merakiui.com/images/logo.svg" alt="" />
-		</a>
+		</a> -->
+		<h1 class="font-mono underline-offset-auto">Apisaga</h1>
 
 		<div class="flex flex-col justify-between flex-1 mt-6">
 			<nav class="flex-1 -mx-3 space-y-3">
-				<div class="relative mx-3">
+				<!-- search bar -->
+				<!-- <div class="relative mx-3">
 					<span class="absolute inset-y-0 left-0 flex items-center pl-3">
 						<svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
 							<path
@@ -46,7 +48,7 @@
 						class="w-full py-1.5 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring"
 						placeholder="Search"
 					/>
-				</div>
+				</div> -->
 
 				<a
 					class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
@@ -70,7 +72,7 @@
 					<span class="mx-2 text-sm font-medium">Projects</span>
 				</a>
 
-				<a
+				<!-- <a
 					class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
 					href="/u/{data.user.username}/profile"
 				>
@@ -90,9 +92,9 @@
 					</svg>
 
 					<span class="mx-2 text-sm font-medium">Profile</span>
-				</a>
+				</a> -->
 
-				<a
+				<!-- <a
 					class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
 					href="/"
 				>
@@ -112,10 +114,9 @@
 					</svg>
 
 					<span class="mx-2 text-sm font-medium">Dashboard</span>
-				</a>
+				</a> -->
 
-
-				<a
+				<!-- <a
 					class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
 					href="/"
 				>
@@ -140,9 +141,9 @@
 					</svg>
 
 					<span class="mx-2 text-sm font-medium">Reporting</span>
-				</a>
+				</a> -->
 
-				<a
+				<!-- <a
 					class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
 					href="/"
 				>
@@ -167,11 +168,12 @@
 					</svg>
 
 					<span class="mx-2 text-sm font-medium">Setting</span>
-				</a>
+				</a> -->
 			</nav>
 
 			<div class="mt-6">
-				<div class="p-3 bg-gray-100 rounded-lg dark:bg-gray-800">
+				<!-- banner iklan -->
+				<!-- <div class="p-3 bg-gray-100 rounded-lg dark:bg-gray-800">
 					<h2 class="text-sm font-medium text-gray-800 dark:text-white">New feature availabel!</h2>
 
 					<p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
@@ -184,7 +186,7 @@
 						src="https://images.unsplash.com/photo-1658953229664-e8d5ebd039ba?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&h=1374&q=80"
 						alt=""
 					/>
-				</div>
+				</div> -->
 
 				<div class="flex items-center justify-between mt-6">
 					<a href="/u/{data.user.username}/profile" class="flex items-center gap-x-2">
@@ -193,7 +195,9 @@
 							src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&h=634&q=80"
 							alt="avatar"
 						/>
-						<span class="text-sm font-medium text-gray-700 dark:text-gray-200">{data.user.name}</span>
+						<span class="text-sm font-medium text-gray-700 dark:text-gray-200"
+							>{data.user.name}</span
+						>
 					</a>
 
 					<a href="/logout">
