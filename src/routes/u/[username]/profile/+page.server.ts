@@ -5,10 +5,7 @@ export const load: PageServerLoad = async ({cookies}) => {
 	const token = cookies.get('token');
 
     if (!token) {
-        return {
-            status: 401,
-            redirect: '/login',
-        };
+        redirect(307, '/logout');
     }
 
     const response = await fetch('http://localhost:3333/api/me', {
