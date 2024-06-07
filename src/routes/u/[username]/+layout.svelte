@@ -228,6 +228,6 @@
 
 	<main class="flex-1 p-8">
 		<!-- Your main content here -->
-		<slot />
+		<slot></slot>
 	</main>
 </body>
