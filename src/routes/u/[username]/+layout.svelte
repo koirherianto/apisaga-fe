@@ -1,21 +1,22 @@
 <script lang="ts">
-	import { goto } from '$app/navigation';
-	import { enhance } from '$app/forms';
-
 	export let data;
 
-	async function handleLogout(event: SubmitEvent) {
-		console.log('ini handleLogout dijalankan');
-		event.preventDefault();
-		const form = event.target as HTMLFormElement; // Type assertion (optional)
+    async function handleLogout(event: SubmitEvent) {
+        console.log('ini handleLogout dijalankan');
+        event.preventDefault();
 
-		await fetch(form.action, {
-			method: form.method,
-			body: new FormData(form)
-		});
+        const response = await fetch('/api/auth/logout', {
+            method: 'DELETE'
+        });
 
-		goto('/login'); // Mengarahkan pengguna ke halaman login setelah logout
-	}
+        const result = await response.json();
+
+        if (result.success) {
+            window.location.href = '/';
+        } else {
+            console.error('Logout failed');
+        }
+    }
 </script>
 
 <body class="flex bg-gray-100 dark:bg-gray-900">
@@ -200,7 +201,7 @@
 						>
 					</a>
 
-					<a href="/logout">
+					<form on:submit={handleLogout}>
 						<button
 							type="submit"
 							class="text-gray-500 transition-colors duration-200 rotate-180 dark:text-gray-400 rtl:rotate-0 hover:text-blue-500 dark:hover:text-blue-400"
@@ -220,7 +221,7 @@
 								/>
 							</svg>
 						</button>
-					</a>
+					</form>
 				</div>
 			</div>
 		</div>

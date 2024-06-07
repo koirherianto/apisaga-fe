@@ -1,2 +1,0 @@
-
-<p>Loading Logout...</p>
