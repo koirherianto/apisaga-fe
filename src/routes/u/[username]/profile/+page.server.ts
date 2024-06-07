@@ -18,10 +18,10 @@ export const load: PageServerLoad = async ({cookies}) => {
 
     const responseData = await response.json();
 
-    console.log({
-        dari : 'load profile +page.server.ts',
-        data: responseData,
-    });
+    // console.log({
+    //     dari : 'load profile +page.server.ts',
+    //     data: responseData,
+    // });
 
     if (response.status === 200) {
         return {
