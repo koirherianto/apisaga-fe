@@ -1,5 +1,6 @@
 <script lang="ts">
-	export let data;
+	import type { LayoutData } from './$types';
+	export let data: LayoutData;
 
     async function handleLogout(event: SubmitEvent) {
         console.log('ini handleLogout dijalankan');

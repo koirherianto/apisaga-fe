@@ -1,6 +1,7 @@
 <script lang="ts">
+	import type { PageData } from './$types';
 	import { enhance } from '$app/forms';
-	export let data;
+	export let data: PageData;
 </script>
 
 <section class="bg-white dark:bg-gray-900">
