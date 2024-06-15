@@ -1,6 +1,5 @@
 import type { PageServerLoad } from "./$types";
 import { redirect } from '@sveltejs/kit';
-import type { Actions } from './$types';
 
 export const load: PageServerLoad = async ({cookies}) => {
 	const token = cookies.get('token');
@@ -24,7 +23,9 @@ export const load: PageServerLoad = async ({cookies}) => {
             projects : responseData.data,
             isLogin : responseData.isLogin
         };
-    } else {
+    } else if(response.status === 401) {
+        redirect(307, '/login');
+    }else {
         return {
             status: 500,
             error: new Error(responseData.message)
