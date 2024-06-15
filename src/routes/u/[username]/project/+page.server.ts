@@ -1,9 +1,9 @@
 import type { PageServerLoad } from "./$types";
 import { redirect } from '@sveltejs/kit';
 
-export const load: PageServerLoad = async ({cookies}) => {
-	const token = cookies.get('token');
-    
+export const load: PageServerLoad = async ({ cookies }) => {
+    const token = cookies.get('token');
+
     if (!token) {
         redirect(307, '/login');
     }
@@ -20,16 +20,16 @@ export const load: PageServerLoad = async ({cookies}) => {
 
     if (response.status === 200) {
         return {
-            projects : responseData.data,
-            isLogin : responseData.isLogin
+            projects: responseData.data,
+            isLogin: responseData.isLogin
         };
-    } else if(response.status === 401) {
+    } else if (response.status === 401) {
         redirect(307, '/login');
-    }else {
+    } else {
         return {
             status: 500,
             error: new Error(responseData.message)
         };
     }
-    
+
 };
