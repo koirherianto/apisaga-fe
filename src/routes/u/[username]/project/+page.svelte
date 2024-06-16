@@ -78,6 +78,7 @@
               </div>
             </a>
             {/each}
+            <a href="/u/{data.user.username}/project/create">
             <div class="p-8 space-y-3 border-2 border-blue-400 dark:border-blue-300 rounded-xl">
                 <span class="inline-block text-blue-500 dark:text-blue-400">
                     <!-- <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -85,12 +86,13 @@
                     </svg> -->
                 </span>
                 <h1 class="text-xl font-semibold text-gray-700 capitalize dark:text-white">Create Project</h1>
-                <a href="/u/{data.user.username}/project/create" class="inline-flex p-2 text-blue-500 capitalize transition-colors duration-300 transform bg-blue-100 rounded-full rtl:-scale-x-100 dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500">
+                <div class="inline-flex p-2 text-blue-500 capitalize transition-colors duration-300 transform bg-blue-100 rounded-full rtl:-scale-x-100 dark:bg-blue-500 dark:text-white hover:underline hover:text-blue-600 dark:hover:text-blue-500">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                       </svg>                      
-                </a>
+                </div>
             </div>
+            </a>
         </div>
     </div>
 </section>
