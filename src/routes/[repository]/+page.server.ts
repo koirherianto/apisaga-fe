@@ -11,7 +11,7 @@ export const load: PageServerLoad = async ({cookies, params}) => {
     if (!token || !user) {
         console.log('User is logged in');
         
-        redirect(307, '/u/' + user!.username +'/project');
+        redirect(307, '/');
     }
 
     return {
