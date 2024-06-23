@@ -13,7 +13,7 @@ export const load: PageServerLoad = async ({cookies, params}) => {
         
         redirect(307, '/');
     }
-
+    
     return {
         parameter : repository
     }
