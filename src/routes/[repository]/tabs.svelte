@@ -3,6 +3,8 @@
 	import { createTabs, melt } from '@melt-ui/svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
+	import MarkdownEditor from "./markdown_editor.svelte";
+	import Preview from './preview.svelte';
 
 	const {
 		elements: { root, list, content, trigger },
@@ -15,8 +17,8 @@
 	export { className as class };
 
 	const triggers = [
-		{ id: 'tab-1', title: 'Account' },
-		{ id: 'tab-2', title: 'Password' },
+		{ id: 'tab-1', title: 'Editor' },
+		{ id: 'tab-2', title: 'Preview' },
 		{ id: 'tab-3', title: 'Settings' }
 	];
 
@@ -54,31 +56,10 @@
 		{/each}
 	</div>
 	<div use:melt={$content('tab-1')} class="grow bg-white p-5">
-		<p class="mb-5 leading-normal text-neutral-900">
-			Make changes to your account here. Click save when you're done.
-		</p>
-		<fieldset class="mb-4 flex w-full flex-col justify-start">
-			<label class="mb-2.5 block text-sm leading-none text-neutral-900" for="name"> Name </label>
-			<input id="name" value="Thomas G. Lopes" />
-		</fieldset>
-
-		<div class="mt-5 flex justify-end">
-			<button class="save">Save changes</button>
-		</div>
+		<MarkdownEditor />
 	</div>
 	<div use:melt={$content('tab-2')} class="grow bg-white p-5">
-		<p class="mb-5 leading-normal text-neutral-900">
-			Change your password here. Click save when you're done.
-		</p>
-		<fieldset class="mb-4 flex w-full flex-col justify-start">
-			<label class="mb-2.5 block text-sm leading-none text-neutral-900" for="newPassword">
-				New password
-			</label>
-			<input id="newPassword" type="password" />
-		</fieldset>
-		<div class="mt-5 flex justify-end">
-			<button class="save">Save changes</button>
-		</div>
+		<Preview />
 	</div>
 	<div use:melt={$content('tab-3')} class="grow bg-white p-5">
 		<p class="mb-5 leading-normal text-neutral-900">
