@@ -3,8 +3,8 @@
 	import { createTabs, melt } from '@melt-ui/svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
-	import MarkdownEditor from "./markdown_editor.svelte";
-	import Preview from './preview.svelte';
+	import MarkdownEditor from "./righ_bar/markdown_editor.svelte";
+	import Preview from './righ_bar/preview.svelte';
 
 	const {
 		elements: { root, list, content, trigger },
@@ -18,8 +18,7 @@
 
 	const triggers = [
 		{ id: 'tab-1', title: 'Editor' },
-		{ id: 'tab-2', title: 'Preview' },
-		{ id: 'tab-3', title: 'Settings' }
+		{ id: 'tab-2', title: 'Preview' }
 	];
 
 	const [send, receive] = crossfade({
@@ -33,9 +32,7 @@
   className
 )} -->
 <div
-	use:melt={$root}
-	
->
+	use:melt={$root}>
 	<div
 		use:melt={$list}
 		class="flex shrink-0 overflow-x-auto bg-neutral-100
@@ -60,21 +57,6 @@
 	</div>
 	<div use:melt={$content('tab-2')} class="grow bg-white p-5">
 		<Preview />
-	</div>
-	<div use:melt={$content('tab-3')} class="grow bg-white p-5">
-		<p class="mb-5 leading-normal text-neutral-900">
-			Change your settings here. Click save when you're done.
-		</p>
-
-		<fieldset class="mb-4 flex w-full flex-col justify-start">
-			<label class="mb-2.5 block text-sm leading-none text-neutral-900" for="newEmail">
-				New email
-			</label>
-			<input id="newEmail" type="email" />
-		</fieldset>
-		<div class="mt-5 flex justify-end">
-			<button class="save">Save changes</button>
-		</div>
 	</div>
 </div>
 
