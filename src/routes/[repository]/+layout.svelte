@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	export let data: PageData;
+	import Popover from './left/pop.svelte';
 
 	import MenuBar from './left/menu_bar.svelte';
 </script>
@@ -60,6 +61,7 @@
 		<div class="px-6 pt-4">
 			<!-- MenuBar -->
 			<!-- <MenuBar /> -->
+			<Popover />
 		</div>
 		<!-- Garis Pemisah -->
 		<div class="px-6 pt-4">

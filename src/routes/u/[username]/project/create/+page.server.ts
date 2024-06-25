@@ -35,7 +35,7 @@ export const actions = {
 
         const responseData = await response.json();
 
-        console.log(responseData);
+        // console.log(responseData);
 
 
         if (response.status === 201) {

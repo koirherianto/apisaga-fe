@@ -3,8 +3,8 @@
 	import { createTabs, melt } from '@melt-ui/svelte';
 	import { cubicInOut } from 'svelte/easing';
 	import { crossfade } from 'svelte/transition';
-	import MarkdownEditor from "./righ_bar/markdown_editor.svelte";
-	import Preview from './righ_bar/preview.svelte';
+	import MarkdownEditor from "./righ/markdown_editor.svelte";
+	import Preview from './righ/preview.svelte';
 
 	const {
 		elements: { root, list, content, trigger },
