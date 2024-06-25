@@ -24,7 +24,7 @@
 </button>
 
 {#if open}
-    <form action="" method="POST" use:enhance>
+    <form action="?/create" method="POST" use:enhance>
         <div use:melt={$content} transition:fade={{ duration: 100 }} class=" content">
             <div use:melt={$arrow} />
             <div class="flex flex-col gap-2.5">

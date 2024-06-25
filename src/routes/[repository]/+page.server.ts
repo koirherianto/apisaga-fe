@@ -1,5 +1,5 @@
 import { redirect } from "@sveltejs/kit";
-import type { PageServerLoad } from "./$types";
+import type { PageServerLoad, Actions } from './$types';
 
 export const load: PageServerLoad = async ({cookies, params}) => {
     
@@ -15,6 +15,18 @@ export const load: PageServerLoad = async ({cookies, params}) => {
     }
     
     return {
-        parameter : repository
+        parameter : repository,
+        user,
+        projectName : params.repository
     }
 };
+
+
+export const actions = {
+    create: async ({request})  => {
+        const form = await request.formData();
+
+        console.log('form ccccccccccc', form);
+        
+    }
+} satisfies Actions;
