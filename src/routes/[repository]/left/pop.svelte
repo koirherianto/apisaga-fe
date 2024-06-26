@@ -1,3 +1,4 @@
+<!-- routes/[repository]/left/pop.svelte -->
 <script lang="ts">
 	import { createPopover, createSync, melt } from '@melt-ui/svelte';
 	import { fade } from 'svelte/transition';

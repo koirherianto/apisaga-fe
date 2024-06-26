@@ -10,7 +10,6 @@ export const load: PageServerLoad = async ({cookies}) => {
     if (token && user) {
         redirect(307, '/u/' + user!.username +'/project');
     }
-
 };
 
 export const actions = {

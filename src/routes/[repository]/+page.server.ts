@@ -6,19 +6,25 @@ export const load: PageServerLoad = async ({cookies, params}) => {
 	const token = cookies.get('token');
     const userString = cookies.get('user');
     const user = userString ? JSON.parse(userString) : null;
-    const repository = params.repository;
     
     if (!token || !user) {
-        console.log('User is logged in');
-        
         redirect(307, '/');
     }
+
+    const response = await fetch('http://localhost:3333/api/projectDefaultVersion/' + params.repository, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+    });
+
+    const responseData = await response.json();
+    const data = responseData.data;
+    const rangkai = data.defaultProject + '/' + data.defaultVersion + '/' + data.defaultTopbar + '/' + data.defaultLeftbar;
+
     
-    return {
-        parameter : repository,
-        user,
-        projectName : params.repository
-    }
+    redirect(307, rangkai);
 };
 
 
