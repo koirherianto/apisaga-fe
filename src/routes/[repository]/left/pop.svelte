@@ -2,9 +2,7 @@
 <script lang="ts">
 	import { createPopover, createSync, melt } from '@melt-ui/svelte';
 	import { fade } from 'svelte/transition';
-    import { enhance } from '$app/forms';
-	// import { Settings2, X } from '$icons/index.js';
-
+	import { enhance } from '$app/forms';
 	export let open = false;
 
 	const {
@@ -19,27 +17,32 @@
 </script>
 
 <button type="button" class="trigger" use:melt={$trigger} aria-label="Update dimensions">
-	<!-- <Settings2 class="size-4" /> -->
 	+
 	<span class="sr-only">Open Popover</span>
 </button>
 
 {#if open}
-    <form action="?/create" method="POST" use:enhance>
-        <div use:melt={$content} transition:fade={{ duration: 100 }} class=" content">
-            <div use:melt={$arrow} />
-            <div class="flex flex-col gap-2.5">
-                <p class="mb-2 font-medium text-neutral-900">Create Menu</p>
-                <fieldset class="flex items-center gap-5">
-                    <label class="w-[75px] text-sm text-neutral-700" for="leftbar_name">Name</label>
-                    <input type="text" id="leftbar_name" class="input" placeholder="Menu Name" />
-                </fieldset>
-            </div>
-            <button class="close" type="submit" use:melt={$close}>
-                +
-            </button>
-        </div>
-    </form>
+	<div use:melt={$content} transition:fade={{ duration: 100 }} class="content">
+		<div use:melt={$arrow} />
+		<div class="flex flex-col gap-2.5">
+			<form method="POST" action="?/lol" use:enhance>
+				<p class="mb-2 font-medium text-neutral-900">Create Menus</p>
+				<fieldset class="flex items-center gap-5">
+					<label class="w-[75px] text-sm text-neutral-700" for="leftbar_name">Name</label>
+					<input
+						type="text"
+						id="leftbar_name"
+						name="leftbar_name"
+						class="input"
+						placeholder="Menu Name"
+						required
+					/>
+				</fieldset>
+				<button type="submit" class="btn p-0"> Create Menu </button>
+			</form>
+		</div>
+		<button class="close" use:melt={$close}> x </button>
+	</div>
 {/if}
 
 <style lang="postcss">
